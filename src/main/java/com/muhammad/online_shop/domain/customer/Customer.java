@@ -18,8 +18,8 @@ public class Customer {
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
-    @OneToOne(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private CreditCard creditCard;
+    /*@OneToOne(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private CreditCard creditCard;*/
 
     public long getId() {
         return id;
@@ -85,13 +85,13 @@ public class Customer {
         this.address = address;
     }
 
-    public CreditCard getPayment() {
+/*    public CreditCard getPayment() {
         return creditCard;
     }
 
     public void setPayment(CreditCard creditCard) {
         this.creditCard = creditCard;
-    }
+    }*/
 
     @Override
     public String toString() {
@@ -104,7 +104,6 @@ public class Customer {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", nif='" + nif + '\'' +
                 ", address=" + address +
-                ", creditCard=" + creditCard +
                 '}';
     }
 }

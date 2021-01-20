@@ -1,7 +1,11 @@
 package com.muhammad.online_shop.domain.customer;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,12 +17,22 @@ public class Cart {
     @OneToOne
     @JoinColumn(name = "customerId", referencedColumnName = "id", nullable = false)
     private Customer customer;
+    @Fetch(FetchMode.JOIN)
     @OneToMany(mappedBy = "cart", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @JsonManagedReference
     private Set<CartItem> cartItems = new HashSet();
-    @Temporal(TemporalType.DATE)
-    private Date date_expire;
+    private Timestamp date_creation;
     private int subTotal;
     private boolean active;
+
+    public Cart() {}
+
+    public Cart(Customer customer, Timestamp date_creation, int subTotal, boolean active) {
+        this.customer = customer;
+        this.date_creation = date_creation;
+        this.subTotal = subTotal;
+        this.active = active;
+    }
 
     public long getId() {
         return id;
@@ -44,12 +58,12 @@ public class Cart {
         this.cartItems = cartItems;
     }
 
-    public Date getDate_expire() {
-        return date_expire;
+    public Timestamp getDate_creation() {
+        return date_creation;
     }
 
-    public void setDate_expire(Date date_expire) {
-        this.date_expire = date_expire;
+    public void setDate_creation(Timestamp date_expire) {
+        this.date_creation = date_expire;
     }
 
     public int getSubTotal() {
@@ -74,7 +88,7 @@ public class Cart {
                 "id=" + id +
                 ", customer=" + customer +
                 ", cartItems=" + cartItems +
-                ", date_expire=" + date_expire +
+                ", date_expire=" + date_creation +
                 ", subTotal=" + subTotal +
                 ", active=" + active +
                 '}';

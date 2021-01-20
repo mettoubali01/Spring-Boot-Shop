@@ -1,7 +1,7 @@
 package com.muhammad.online_shop.domain.customer;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.muhammad.online_shop.domain.shop.Product;
-
 import javax.persistence.*;
 
 @Entity
@@ -18,7 +18,18 @@ public class CartItem {
     private int discount;
     @ManyToOne(optional = false)
     @JoinColumn(name = "cart_id", nullable = false)
+    @JsonBackReference
     private Cart cart;
+
+    public CartItem() { }
+
+    public CartItem(Product product, int price, int qty, int discount, Cart cart) {
+        this.product = product;
+        this.price = price;
+        this.qty = qty;
+        this.discount = discount;
+        this.cart = cart;
+    }
 
     public long getId() {
         return id;
@@ -76,7 +87,9 @@ public class CartItem {
                 ", price=" + price +
                 ", qty=" + qty +
                 ", discount=" + discount +
+/*
                 ", cart=" + cart +
+*/
                 '}';
     }
 }

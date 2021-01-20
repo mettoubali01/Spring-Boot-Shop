@@ -1,7 +1,5 @@
 package com.muhammad.online_shop.service;
 
-import com.muhammad.online_shop.domain.shop.ClothesCategory;
-import com.muhammad.online_shop.domain.shop.Product;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Collection;

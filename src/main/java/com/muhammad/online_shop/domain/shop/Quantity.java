@@ -1,5 +1,7 @@
 package com.muhammad.online_shop.domain.shop;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,7 @@ public class Quantity {
     private String comment;
     @JoinColumn(name = "product_fk", nullable = false)
     @ManyToOne(optional = false)
+    @JsonBackReference
     private Product product;
 
     public long getId() {

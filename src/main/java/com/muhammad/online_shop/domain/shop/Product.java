@@ -2,6 +2,7 @@ package com.muhammad.online_shop.domain.shop;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -29,6 +30,7 @@ public class Product implements Serializable {
     //@JsonIdentityReference(alwaysAsId = true)
     @OneToMany(mappedBy = "product", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @Fetch(FetchMode.JOIN)
+    @JsonManagedReference
     private Set<Quantity> quantity = new HashSet<>();
    /* @OneToOne(mappedBy = "product", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private CartItem cartItem;*/

@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface ICustomerRepository extends JpaRepository<Customer, Long> {
 
     void deleteByNif(String nif);
+    Customer findByNif(String nif);
 }
