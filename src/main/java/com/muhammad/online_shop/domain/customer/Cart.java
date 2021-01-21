@@ -3,7 +3,6 @@ package com.muhammad.online_shop.domain.customer;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.HashSet;
@@ -21,15 +20,15 @@ public class Cart {
     @OneToMany(mappedBy = "cart", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JsonManagedReference
     private Set<CartItem> cartItems = new HashSet();
-    private Timestamp date_creation;
+    private Timestamp expiration_date;
     private int subTotal;
     private boolean active;
 
     public Cart() {}
 
-    public Cart(Customer customer, Timestamp date_creation, int subTotal, boolean active) {
+    public Cart(Customer customer, Timestamp expiration_date, int subTotal, boolean active) {
         this.customer = customer;
-        this.date_creation = date_creation;
+        this.expiration_date = expiration_date;
         this.subTotal = subTotal;
         this.active = active;
     }
@@ -58,12 +57,12 @@ public class Cart {
         this.cartItems = cartItems;
     }
 
-    public Timestamp getDate_creation() {
-        return date_creation;
+    public Timestamp getExpiration_date() {
+        return expiration_date;
     }
 
-    public void setDate_creation(Timestamp date_expire) {
-        this.date_creation = date_expire;
+    public void setExpiration_date(Timestamp date_expire) {
+        this.expiration_date = date_expire;
     }
 
     public int getSubTotal() {
@@ -88,7 +87,7 @@ public class Cart {
                 "id=" + id +
                 ", customer=" + customer +
                 ", cartItems=" + cartItems +
-                ", date_expire=" + date_creation +
+                ", date_expire=" + expiration_date +
                 ", subTotal=" + subTotal +
                 ", active=" + active +
                 '}';

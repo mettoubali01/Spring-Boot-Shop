@@ -41,5 +41,4 @@ public interface IProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByBrandAndPeopleCat(String brand, String peopleCat);
 
     void deleteByName(String name);
-
 }
